@@ -2,8 +2,8 @@
 
 public class Rope : MonoBehaviour
 {
-    // Reference to HingeJoint2D property
-    public HingeJoint2D hook;
+    // Reference to Rigidbody2D property
+    public Rigidbody2D hook;
 
     // Reference to the Link prefab
     public GameObject linkPrefab;
@@ -20,10 +20,22 @@ public class Rope : MonoBehaviour
 
     void GenerateRope()
     {
+        // Get the reference of the previous link
+        Rigidbody2D previousRB = hook;
+
         for(int i = 0; i < links; i++)
         {
             // Create links
-            Instantiate(linkPrefab, transform);
+            GameObject link = Instantiate(linkPrefab, transform);
+
+            // Add reference to the HingeJoint2D for the new link
+            HingeJoint2D joint = link.GetComponent<HingeJoint2D>();
+
+            // Connect the current link with the previous link
+            joint.connectedBody = hook;
+
+            // Set the new previous link
+            previousRB = link.GetComponent<Rigidbody2D>();
         }
     }
 }
