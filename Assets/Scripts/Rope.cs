@@ -32,7 +32,7 @@ public class Rope : MonoBehaviour
             HingeJoint2D joint = link.GetComponent<HingeJoint2D>();
 
             // Connect the current link with the previous link
-            joint.connectedBody = hook;
+            joint.connectedBody = previousRB;
 
             // Set the new previous link
             previousRB = link.GetComponent<Rigidbody2D>();
