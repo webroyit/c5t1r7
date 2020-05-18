@@ -8,6 +8,9 @@ public class Rope : MonoBehaviour
     // Reference to the Link prefab
     public GameObject linkPrefab;
 
+    // Access the Weight class
+    public Weight weight;
+
     // Number of links in chain
     public int links = 7;
 
@@ -34,8 +37,17 @@ public class Rope : MonoBehaviour
             // Connect the current link with the previous link
             joint.connectedBody = previousRB;
 
-            // Set the new previous link
-            previousRB = link.GetComponent<Rigidbody2D>();
+            if(i < links - 1)
+            {
+                // Set the new previous link
+                previousRB = link.GetComponent<Rigidbody2D>();
+            } else
+            {
+                // Call the ConnectRopeEnd() from Weight class
+                weight.ConnectRopeEnd(link.GetComponent<Rigidbody2D>());
+            }
+
+            
         }
     }
 }
