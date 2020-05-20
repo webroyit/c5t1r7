@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Frog : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D  col)
     {
-        // Player win the game if the Weight touch the frog
+        // Player win the level if the Weight touch the frog
         if(col.collider.tag == "Weight")
         {
-            Debug.Log("You Win");
+            // Load the next level
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
