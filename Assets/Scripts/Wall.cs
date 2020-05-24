@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Wall : MonoBehaviour
 {
@@ -8,8 +7,8 @@ public class Wall : MonoBehaviour
         // Game over if the Weight hitted the ground
         if(col.collider.tag == "Weight")
         {
-            // Restart the game
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // Call this function on GameManager class
+            FindObjectOfType<GameManager>().GameOver();
         }
     }
 }

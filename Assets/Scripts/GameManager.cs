@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,5 +7,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    // Restart the game
+    public void GameOver()
+    {
+        // Reload the level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
