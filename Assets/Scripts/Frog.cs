@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Frog : MonoBehaviour
 {
@@ -8,8 +9,17 @@ public class Frog : MonoBehaviour
         // Player win the level if the Weight touch the frog
         if(col.collider.tag == "Weight")
         {
-            // Load the next level
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // StartCoroutine to work with IEnumerator
+            StartCoroutine(RestartLevel());
         }
+    }
+
+    IEnumerator RestartLevel()
+    {
+        // Wait 1 second
+        yield return new WaitForSeconds(1f);
+
+        // Load the next level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
